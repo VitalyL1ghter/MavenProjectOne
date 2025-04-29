@@ -2,6 +2,7 @@ import model.*;
 import repositories.PeronRepositoryImpl;
 import repositories.PersonRepository;
 
+import java.sql.Array;
 import java.time.Period;
 import java.util.*;
 import java.util.function.Consumer;
@@ -91,6 +92,40 @@ public class App {
 
         TreeNum resDr = numAll.apply(new TreeNum(2.0,5.0,7.0));
         System.out.println(resDr);
+
+        String input = "null"; // Если прописать null, то будет ошибка с сообщением.
+        String str = Objects.requireNonNull(input, "Inp");
+
+        System.out.println(str);
+
+        List<Integer> numbers = Collections.singletonList(Arrays.asList(1, 2, 3).stream().reduce(0, (x, y) -> x + y));
+
+        System.out.println(numbers);
+
+        List<Integer> numbers2 = Arrays.asList(3,4,2);
+        int summm = numbers2.stream().reduce(0,(a,b)->a+b);
+        System.out.println(summm);
+
+                int [] sa = {1,2,3};
+        int su = Arrays.stream(sa).sum();
+        System.out.println(su);
+
+        int df = Arrays.stream(sa).boxed()
+                .collect(Collectors.summingInt(Integer::intValue));
+        System.out.println(df);
+
+        int fff = numbers2.stream()
+                .min(Comparator.comparing(Integer::intValue)).orElseThrow();
+        System.out.println(fff);
+
+        Optional<Integer> kkk = numbers2.stream().collect(Collectors.minBy(Comparator.comparing(Integer::intValue)));
+
+        System.out.println(kkk);
+
+
+
+
+
 
 //        NumberDrob num33 = (n1,n2,n3)-> new double[]{n1 * n1, n2 * n2, n3 * n3};
 //        double[] res = num33.apply(2.0,4.0,6.0);
